@@ -1,4 +1,5 @@
-sudo xlnx-config --xmutil loadapp nlp-smartvision
+sudo xmutil unloadapps
+sudo xmutil loadapp kv260-nlp-smartvision
 cd Face_Detect
-source build.sh
-sudo ./test_video_facedetect densebox_640_360.xmodel 0
+/usr/bin/g++ -std=c++17 -I. -I/usr/include/opencv4 -o test_video_facedetect test_video_facedetect.cpp -lopencv_core -lopencv_video -lopencv_videoio -lopencv_imgproc -lopencv_imgcodecs -lopencv_highgui -lvitis_ai_library-facedetect -lvitis_ai_library-dpu_task -pthread -lglog
+sudo ./Visio-FD densebox_640_360.xmodel 0
