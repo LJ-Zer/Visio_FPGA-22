@@ -200,7 +200,7 @@ while True:
                         xmax = int(min(imW, (boxes[i][3] * imW)))
                         cropped_image = image[ymin:ymax, xmin:xmax]
                         cropped_image_resized = cv2.resize(cropped_image, (320, 320))
-                        image_name = f"TI_{timestamp}_{object_name} ({lord_john_perucho_counter}).jpg"
+                        image_name = f"{timestamp}_TI_{object_name} ({lord_john_perucho_counter}).jpg"
                         image_path_processed = os.path.join(save_folder1, image_name)
                         cv2.imwrite(image_path_processed, cropped_image_resized)  # Capture the frame
                         lord_john_perucho_counter += 1
@@ -217,7 +217,7 @@ while True:
                         xmax = int(min(imW, (boxes[i][3] * imW)))
                         cropped_image = image[ymin:ymax, xmin:xmax]
                         cropped_image_resized = cv2.resize(cropped_image, (320, 320))
-                        image_name = f"TO_{timestamp}_{object_name} ({lord_john_perucho_counter}).jpg"
+                        image_name = f"{timestamp}_TO_{object_name} ({lord_john_perucho_counter}).jpg"
                         image_path_processed = os.path.join(save_folder1, image_name)
                         cv2.imwrite(image_path_processed, cropped_image_resized)  # Capture the frame
                         lord_john_perucho_detected = True 
@@ -252,7 +252,7 @@ while True:
                         xmax = int(min(imW, (boxes[i][3] * imW)))
                         cropped_image = image[ymin:ymax, xmin:xmax]
                         cropped_image_resized = cv2.resize(cropped_image, (320, 320))
-                        image_name = f"TI_{timestamp}_{object_name} ({leo_delen_counter}).jpg"
+                        image_name = f"{timestamp}_TI_{object_name} ({leo_delen_counter}).jpg"
                         image_path_processed = os.path.join(save_folder1, image_name)
                         cv2.imwrite(image_path_processed, cropped_image_resized)  # Capture the frame
                         leo_delen_counter += 1
@@ -269,7 +269,7 @@ while True:
                         xmax = int(min(imW, (boxes[i][3] * imW)))
                         cropped_image = image[ymin:ymax, xmin:xmax]
                         cropped_image_resized = cv2.resize(cropped_image, (320, 320))
-                        image_name = f"TO_{timestamp}_{object_name} ({leo_delen_counter}).jpg"
+                        image_name = f"{timestamp}_TO_{object_name} ({leo_delen_counter}).jpg"
                         image_path_processed = os.path.join(save_folder1, image_name)
                         cv2.imwrite(image_path_processed, cropped_image_resized)  # Capture the frame
                         leo_delen_detected = True 
@@ -318,7 +318,7 @@ while True:
                         xmax = int(min(imW, (boxes[i][3] * imW)))
                         cropped_image = image[ymin:ymax, xmin:xmax]
                         cropped_image_resized = cv2.resize(cropped_image, (320, 320))
-                        image_name = f"TO_{timestamp}_{object_name} ({frank_castillo_counter}).jpg"
+                        image_name = f"{timestamp}_TO_{object_name} ({frank_castillo_counter}).jpg"
                         image_path_processed = os.path.join(save_folder1, image_name)
                         cv2.imwrite(image_path_processed, cropped_image_resized)  # Capture the frame
                         frank_castillo_detected = True 
@@ -351,7 +351,7 @@ while True:
                         xmax = int(min(imW, (boxes[i][3] * imW)))
                         cropped_image = image[ymin:ymax, xmin:xmax]
                         cropped_image_resized = cv2.resize(cropped_image, (320, 320))
-                        image_name = f"TI_{timestamp}_{object_name} ({queenie_amargo_counter}).jpg"
+                        image_name = f"{timestamp}_TI_{object_name} ({queenie_amargo_counter}).jpg"
                         image_path_processed = os.path.join(save_folder1, image_name)
                         cv2.imwrite(image_path_processed, cropped_image_resized)  # Capture the frame
                         queenie_amargo_counter += 1
@@ -368,7 +368,7 @@ while True:
                         xmax = int(min(imW, (boxes[i][3] * imW)))
                         cropped_image = image[ymin:ymax, xmin:xmax]
                         cropped_image_resized = cv2.resize(cropped_image, (320, 320))
-                        image_name = f"TO_{timestamp}_{object_name} ({queenie_amargo_counter}).jpg"
+                        image_name = f"{timestamp}_TO_{object_name} ({queenie_amargo_counter}).jpg"
                         image_path_processed = os.path.join(save_folder1, image_name)
                         cv2.imwrite(image_path_processed, cropped_image_resized)  # Capture the frame
                         queenie_amargo_detected = True 
