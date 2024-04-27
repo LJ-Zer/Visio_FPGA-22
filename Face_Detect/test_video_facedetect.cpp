@@ -14,13 +14,13 @@ using namespace std::filesystem;
 int main(int argc, char** argv) {
     VideoCapture cap(0);  // Open default camera (0)
     if (!cap.isOpened()) {
-        cerr << "Error opening camera!" << endl;
+        std:cerr << "Error opening camera!" << std:endl;
         return -1;
     }
 
     auto network = vitis::ai::FaceDetect::create("densebox_640_360", true);
     if (!network) {
-        cerr << "Failed to create face detection network." << endl;
+        std:cerr << "Failed to create face detection network." << std:endl;
         return -1;
     }
 
@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
             Mat frame;
             bool frame_read_success = cap.read(frame);  // Flag for read success
             if (!frame_read_success) {
-            cerr << "Error reading frame from camera!" << endl;
+            std:cerr << "Error reading frame from camera!" << std:endl;
             break;
             }
 
