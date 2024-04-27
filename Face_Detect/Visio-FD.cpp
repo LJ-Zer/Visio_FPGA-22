@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
             // Draw FPS text on the frame
             std::stringstream fps_text;
             fps_text << "FPS: " << std::fixed << std::setprecision(1) << fps;
-            putText(frame, fps_text.str(), Point(10, 18), FONT_HERSHEY_SIMPLEX, 2.0, Scalar(0, 255, 0), 2);
+            putText(frame, fps_text.str(), Point(10, 40), FONT_HERSHEY_SIMPLEX, 2.0, Scalar(0, 255, 0), 2);
 
             resize(frame, frame, Size(320, 320));
             imshow("VisioAccelerAI", frame);
