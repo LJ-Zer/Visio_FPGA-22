@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
                 try {
                     face_roi = frame(Rect(x1, y1, x2 - x1, y2 - y1));
                 } catch (const cv::Exception& ex) {
-                    // Handle OpenCV exception if coordinates are out-of-bounds (optional)
+                // Handle OpenCV exception if coordinates are out-of-bounds (optional)
                     // std::cerr << "Warning: ROI coordinates outside frame (" << ex.what() << ")" << std::endl;
                     continue;
                 }
@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
             fps_text << "FPS: " << std::fixed << std::setprecision(1) << fps;
             putText(frame, fps_text.str(), Point(10, 50), FONT_HERSHEY_SIMPLEX, 2.0, Scalar(0, 255, 0), 2);
 
-            resize(frame, frame, Size(320, 320));
+            resize(frame, frame, Size(640, 360));
             imshow("VisioAccelerAI", frame);
             if (waitKey(10) == 27) { // Exit on ESC key press
             break;
