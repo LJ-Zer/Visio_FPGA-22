@@ -24,8 +24,8 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    int frame_width = cap.get(CAP_PROP_FRAME_WIDTH, 1240);
-    int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT, 720);
+    int frame_width = cap.get(CAP_PROP_FRAME_WIDTH);
+    int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT);
 
     // Create the "face_detected" folder if it doesn't exist
     create_directory("face_detected");  // Using std::filesystem
