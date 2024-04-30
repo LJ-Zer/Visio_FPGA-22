@@ -24,8 +24,8 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    int frame_width = cap.get(CAP_PROP_FRAME_WIDTH);
-    int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT);
+    int frame_width = cap.get(CAP_PROP_FRAME_WIDTH, 1240);
+    int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT, 720);
 
     // Create the "face_detected" folder if it doesn't exist
     create_directory("face_detected");  // Using std::filesystem
@@ -47,8 +47,8 @@ int main(int argc, char** argv) {
 
             // Resize for network input if necessary
             Mat resized_frame;
-            if (frame.cols != 640 || frame.rows != 360) {
-            resize(frame, resized_frame, Size(640, 360));
+            if (frame.cols != 1240 || frame.rows != 720) {
+            resize(frame, resized_frame, Size(1240, 720));
             } else {
             resized_frame = frame; // Avoid unnecessary copy if sizes match
             }
