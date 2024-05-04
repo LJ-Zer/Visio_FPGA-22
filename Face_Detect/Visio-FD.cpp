@@ -40,7 +40,6 @@ int main(int argc, char** argv) {
             break;
             }
 
-
             Mat resized_frame;
             if (frame.cols != 640 || frame.rows != 360) {
             resize(frame, resized_frame, Size(640, 360));
@@ -57,8 +56,7 @@ int main(int argc, char** argv) {
             // Update FPS after processing each frame
             auto end = std::chrono::steady_clock::now();
             std::chrono::duration<double, std::milli> elapsed_ms = end - start;
-            fps = 1.0 / (elapsed_ms.count() / 1000.0);
-            start = end;
+
 
             for (const auto& r : face_results.rects) {
                 // Scale bounding box coordinates to original frame size
@@ -73,7 +71,8 @@ int main(int argc, char** argv) {
                 } catch (const cv::Exception& ex) {
                     continue;
                 }
-                
+                fps = 1.0 / (elapsed_ms.count() / 1000.0);
+                start = end;    
                 // Save cropped face image with timestamp-based filename
                 time_t now = time(0);
                 tm *ltm = localtime(&now);
