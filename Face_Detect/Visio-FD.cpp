@@ -33,15 +33,13 @@ int main(int argc, char** argv) {
     // Variables for FPS calculation
 
         while (true) {
-            double fps = 0.0;
-            auto start = std::chrono::steady_clock::now();
-
             Mat frame;
             bool frame_read_success = cap.read(frame);  // Flag for read success
             if (!frame_read_success) {
             std::cerr << "Error reading frame from camera!" << std::endl;
             break;
             }
+
 
             Mat resized_frame;
             if (frame.cols != 640 || frame.rows != 360) {
@@ -50,6 +48,9 @@ int main(int argc, char** argv) {
             resized_frame = frame; // Avoid unnecessary copy if sizes match
             }
 
+            double fps = 0.0;
+            auto start = std::chrono::steady_clock::now();
+            
             // Face detection
             auto face_results = network->run(resized_frame);
 
@@ -70,8 +71,6 @@ int main(int argc, char** argv) {
                 try {
                     face_roi = frame(Rect(x1, y1, x2 - x1, y2 - y1));
                 } catch (const cv::Exception& ex) {
-                // Handle OpenCV exception if coordinates are out-of-bounds (optional)
-                    // std::cerr << "Warning: ROI coordinates outside frame (" << ex.what() << ")" << std::endl;
                     continue;
                 }
                 
