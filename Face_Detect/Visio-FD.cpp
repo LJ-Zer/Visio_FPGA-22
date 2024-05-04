@@ -24,12 +24,13 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    cap.set(CAP_PROP_FRAME_WIDTH, 640);
-    cap.set(CAP_PROP_FRAME_HEIGHT, 360);
-    
+
     int frame_width = cap.get(CAP_PROP_FRAME_WIDTH);
     int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT);
-
+    
+    int frame_width = cap.set(CAP_PROP_FRAME_WIDTH, 640);
+    int frame_height = cap.set(CAP_PROP_FRAME_HEIGHT, 360);
+    
     // Create the "face_detected" folder if it doesn't exist
     create_directory("face_detected");  // Using std::filesystem
     
