@@ -71,8 +71,7 @@ int main(int argc, char** argv) {
                 } catch (const cv::Exception& ex) {
                     continue;
                 }
-                fps = 1.0 / (elapsed_ms.count() / 1000.0);
-                start = end;    
+
                 // Save cropped face image with timestamp-based filename
                 time_t now = time(0);
                 tm *ltm = localtime(&now);
@@ -84,6 +83,8 @@ int main(int argc, char** argv) {
 
                 imwrite(full_path, face_roi);
                 //LOG(INFO) << "Face cropped and saved to: " << full_path;
+                fps = 1.0 / (elapsed_ms.count() / 1000.0);
+                start = end;    
             }
             
             // Draw FPS text on the frame
