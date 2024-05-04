@@ -31,23 +31,22 @@ int main(int argc, char** argv) {
     create_directory("face_detected");  // Using std::filesystem
     
     // Variables for FPS calculation
+    Mat resized_frame;
+    if (frame.cols != 640 || frame.rows != 360) {
+    resize(frame, resized_frame, Size(640, 360));
+    } else {
+    resized_frame = frame; // Avoid unnecessary copy if sizes match
+    }
 
         while (true) {
             double fps = 0.0;
             auto start = std::chrono::steady_clock::now();
 
             Mat frame;
-            bool frame_read_success = cap.read(frame);  // Flag for read success
+            bool frame_read_success = cap.read(resized_frame);  // Flag for read success
             if (!frame_read_success) {
             std::cerr << "Error reading frame from camera!" << std::endl;
             break;
-            }
-
-            Mat resized_frame;
-            if (frame.cols != 640 || frame.rows != 360) {
-            resize(frame, resized_frame, Size(640, 360));
-            } else {
-            resized_frame = frame; // Avoid unnecessary copy if sizes match
             }
             
             // Face detection
@@ -71,7 +70,6 @@ int main(int argc, char** argv) {
                 } catch (const cv::Exception& ex) {
                     continue;
                 }
-
                 // Save cropped face image with timestamp-based filename
                 time_t now = time(0);
                 tm *ltm = localtime(&now);
