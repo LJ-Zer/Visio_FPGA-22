@@ -31,6 +31,8 @@ int main(int argc, char** argv) {
     create_directory("face_detected");  // Using std::filesystem
     
     // Variables for FPS calculation
+        double fps = 0.0;
+        auto start = std::chrono::steady_clock::now();
 
         while (true) {
             Mat frame;
@@ -40,8 +42,6 @@ int main(int argc, char** argv) {
             break;
             }
 
-            double fps = 0.0;
-            auto start = std::chrono::steady_clock::now();
 
             Mat resized_frame;
             if (frame.cols != 640 || frame.rows != 360) {
