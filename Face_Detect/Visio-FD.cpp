@@ -24,6 +24,8 @@ int main(int argc, char** argv) {
         return -1;
     }
 
+    cap.set(CAP_PROP_FRAME_WIDTH, 640);
+    cap.set(CAP_PROP_FRAME_HEIGHT, 360);
 
     int frame_width = cap.get(CAP_PROP_FRAME_WIDTH);
     int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT);
