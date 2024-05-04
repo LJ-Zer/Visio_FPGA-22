@@ -40,15 +40,15 @@ int main(int argc, char** argv) {
             break;
             }
 
+            double fps = 0.0;
+            auto start = std::chrono::steady_clock::now();
+
             Mat resized_frame;
             if (frame.cols != 640 || frame.rows != 360) {
             resize(frame, resized_frame, Size(640, 360));
             } else {
             resized_frame = frame; // Avoid unnecessary copy if sizes match
             }
-
-            double fps = 0.0;
-            auto start = std::chrono::steady_clock::now();
             
             // Face detection
             auto face_results = network->run(resized_frame);
