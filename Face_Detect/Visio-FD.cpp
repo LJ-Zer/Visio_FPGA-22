@@ -42,10 +42,6 @@ int main(int argc, char** argv) {
             break;
             }
 
-            // Print frame read status for debugging
-            // std::cout << "Frame Read: " << (frame_read_success ? "Success" : "Failed") << std::endl;
-
-            // Resize for network input if necessary
             Mat resized_frame;
             if (frame.cols != 640 || frame.rows != 360) {
             resize(frame, resized_frame, Size(640, 360));
@@ -63,11 +59,11 @@ int main(int argc, char** argv) {
             start = end;
 
             for (const auto& r : face_results.rects) {
-                // Scale bounding box coordinates to original frame size
-                int x1 = r.x * frame_width;
-                int y1 = r.y * frame_height;
-                int x2 = x1 + (r.width * frame_width);
-                int y2 = y1 + (r.height * frame_height);
+                // Scale bounding box coordinates to resized frame size
+                int x1 = r.x * resized_frame.cols;
+                int y1 = r.y * resized_frame.rows;
+                int x2 = x1 + (r.width * resized_frame.cols);
+                int y2 = y1 + (r.height * resized_frame.rows);
 
                 Mat face_roi;
                 try {
