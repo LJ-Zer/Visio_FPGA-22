@@ -31,31 +31,33 @@ int main(int argc, char** argv) {
     create_directory("face_detected");  // Using std::filesystem
     
     // Variables for FPS calculation
+
+    Mat frame;
+    bool frame_read_success = cap.read(frame);  // Flag for read success
+    if (!frame_read_success) {
+    std::cerr << "Error reading frame from camera!" << std::endl;
+    break;
+    }
+    // Resize for network input if necessary
     Mat resized_frame;
     if (frame.cols != 640 || frame.rows != 360) {
     resize(frame, resized_frame, Size(640, 360));
     } else {
     resized_frame = frame; // Avoid unnecessary copy if sizes match
     }
-
+    
         while (true) {
+
             double fps = 0.0;
             auto start = std::chrono::steady_clock::now();
-
-            Mat frame;
-            bool frame_read_success = cap.read(resized_frame);  // Flag for read success
-            if (!frame_read_success) {
-            std::cerr << "Error reading frame from camera!" << std::endl;
-            break;
-            }
-            
             // Face detection
             auto face_results = network->run(resized_frame);
 
             // Update FPS after processing each frame
             auto end = std::chrono::steady_clock::now();
             std::chrono::duration<double, std::milli> elapsed_ms = end - start;
-
+            fps = 1.0 / (elapsed_ms.count() / 1000.0);
+            start = end;
 
             for (const auto& r : face_results.rects) {
                 // Scale bounding box coordinates to original frame size
@@ -68,8 +70,11 @@ int main(int argc, char** argv) {
                 try {
                     face_roi = frame(Rect(x1, y1, x2 - x1, y2 - y1));
                 } catch (const cv::Exception& ex) {
+                // Handle OpenCV exception if coordinates are out-of-bounds (optional)
+                    // std::cerr << "Warning: ROI coordinates outside frame (" << ex.what() << ")" << std::endl;
                     continue;
                 }
+                
                 // Save cropped face image with timestamp-based filename
                 time_t now = time(0);
                 tm *ltm = localtime(&now);
@@ -81,8 +86,6 @@ int main(int argc, char** argv) {
 
                 imwrite(full_path, face_roi);
                 //LOG(INFO) << "Face cropped and saved to: " << full_path;
-                fps = 1.0 / (elapsed_ms.count() / 1000.0);
-                start = end;    
             }
             
             // Draw FPS text on the frame
