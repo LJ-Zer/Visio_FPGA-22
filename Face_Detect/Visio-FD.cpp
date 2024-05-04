@@ -60,11 +60,11 @@ int main(int argc, char** argv) {
             start = end;
 
             for (const auto& r : face_results.rects) {
-                // Scale bounding box coordinates to resized frame size
-                int x1 = r.x * resized_frame.cols;
-                int y1 = r.y * resized_frame.rows;
-                int x2 = x1 + (r.width * resized_frame.cols);
-                int y2 = y1 + (r.height * resized_frame.rows);
+                // Scale bounding box coordinates to original frame size
+                int x1 = r.x * frame_width;
+                int y1 = r.y * frame_height;
+                int x2 = x1 + (r.width * frame_width);
+                int y2 = y1 + (r.height * frame_height);
 
                 Mat face_roi;
                 try {
