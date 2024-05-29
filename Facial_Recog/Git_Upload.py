@@ -3,6 +3,8 @@ import subprocess
 import sys
 import time
 
+###Sample for John
+
 # Path to the local repository directory
 repository_path = "/home/ubuntu/Desktop/Face-Detected"
 
